@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input type="text" placeholder="Digite o nome" v-model="nome"><br>
+    <input type="number" placeholder="Digite a idade" v-model="idade"><br>
+    <button @click="cadastraFuncionario">Cadastrar</button>
+    <lista-funcionarios/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ListaFuncionarios from "./components/ListaFuncionarios.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ListaFuncionarios
+    
+  }, methods: {
+    cadastraFuncionario: function() {
+      this.$store.commit('cadastrar', {
+        nome: this.nome,
+        idade: this.idade
+      })
+
+    }
+  }, data: function() {
+    return {
+      nome: '',
+      idade: ''
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
 </style>
